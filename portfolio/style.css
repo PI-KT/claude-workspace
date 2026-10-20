@@ -1,5 +1,20 @@
 /* React / Vue 버전이 함께 쓰는 디자인 */
-/* 항상 다크 모드 (OS 설정과 무관) */
+/* 라이트 모드 (버튼으로 전환) */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #1b2430;
+  --muted: #5b6675;
+  --line: #e3e7ed;
+  --accent: #0f8b7d;
+  --accent-soft: #e3f4f1;
+  --accent-text: #0b6f64;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 8px 24px rgba(16, 24, 40, .06);
+}
+
+/* 다크 모드 (기본값) */
 :root {
   color-scheme: dark;
   --bg: #0f1419;
@@ -42,6 +57,15 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-
 .nav { display: flex; gap: 20px; }
 .nav a { text-decoration: none; color: var(--muted); font-size: .95rem; font-weight: 600; }
 .nav a:hover { color: var(--accent-text); }
+.header-right { display: flex; align-items: center; gap: 20px; }
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  font: inherit; font-size: .85rem; font-weight: 700;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 /* 소개 */
 .hero { padding: 72px 0 56px; }
