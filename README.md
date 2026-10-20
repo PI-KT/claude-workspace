@@ -16,9 +16,8 @@ claude-workspace/
 ├── 🔒 .env               # API 키·비밀번호 보관 (※ 아직 없음 / 절대 공유·업로드 금지)
 ├── 🌤️ weather.txt        # LA 날씨·미세먼지 기록 (매일 07:00 자동으로 아래에 추가)
 ├── 📂 portfolio/         # 포트폴리오 웹페이지 (더블클릭하면 브라우저에서 열림)
-│   ├── style.css         # React·Vue 버전이 함께 쓰는 디자인
-│   ├── react/index.html  # React 18 버전
-│   └── vue/index.html    # Vue 3 버전
+│   ├── style.css         # 포트폴리오 디자인 (항상 다크 모드)
+│   └── react/index.html  # React 18 버전
 ├── 📂 scripts/           # 자동 실행 스크립트
 │   └── weather.ps1       # 날씨·미세먼지를 가져와 weather.txt에 저장 (Open-Meteo, 키 불필요)
 └── 📂 tasks/             # 작업 기록 폴더
