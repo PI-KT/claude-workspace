@@ -12,6 +12,7 @@ claude-workspace/
 ├── 📄 CLAUDE.md          # Claude Code 지침서 (규칙, 소통 방식, 작업 원칙)
 ├── 🚨 SECURITY.md        # 키 노출 비상 매뉴얼
 ├── 📘 README.md          # 지금 보고 있는 문서 (폴더 안내도)
+├── ▲ vercel.json         # Vercel 배포 설정 (portfolio/ 폴더만 공개)
 ├── 🙈 .gitignore         # Git에 올리지 않을 파일 목록 (.env, *.key 등 민감 파일 제외)
 ├── 🔒 .env               # API 키·비밀번호 보관 (※ 아직 없음 / 절대 공유·업로드 금지)
 ├── 🌤️ weather.txt        # LA 날씨·미세먼지 기록 (매일 07:00 자동으로 아래에 추가)
@@ -59,6 +60,17 @@ claude-workspace/
 ### ⏹️ 끝낼 때
 1. 완료한 항목은 `todo.md`에서 `[x]`로 체크해요
 2. 한 일을 `progress.md` **맨 아래에 추가**해요 (기존 내용은 지우지 않기)
+
+---
+
+## 🚀 포트폴리오 배포 (Vercel)
+
+1. [vercel.com](https://vercel.com)에 GitHub 계정으로 로그인
+2. **Add New → Project** 에서 `claude-workspace` 레포를 선택 (Import)
+3. 설정은 건드리지 않고 **Deploy** — `vercel.json`이 알아서 처리해요
+   - 빌드 없음, `portfolio/` 폴더만 공개 (`CLAUDE.md`, `SECURITY.md` 등은 공개되지 않아요)
+   - 사이트 주소 `/` → `portfolio/react/index.html`
+4. 이후 `main`에 push할 때마다 자동으로 다시 배포돼요
 
 ---
 
