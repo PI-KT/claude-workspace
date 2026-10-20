@@ -69,3 +69,19 @@
 - 옮긴 내역을 `tasks/downloads-move-log.csv`에 저장 (원래대로 되돌릴 때 사용)
 - 하위 폴더 6개는 **건드리지 않음**
 - `desktop.ini`(Windows 시스템 파일)는 **건드리지 않음**
+
+## 2026-10-20 — 포트폴리오 방명록 (Supabase + Vite) (🔧 진행 중: 6단계 브라우저 테스트 대기)
+
+방식: 기존 `portfolio/react/index.html`은 **그대로 두고**, 새 폴더 `portfolio/app/`에 Vite+React 프로젝트를 만들어 포트폴리오를 옮기고 맨 아래에 방명록을 붙임
+- 환경변수: `portfolio/app/.env.local` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) — git에 올라가지 않음
+- 테이블: `messages` (id, name, content, created_at), RLS = 누구나 읽기 + 쓰기만 (수정·삭제는 막힘)
+- ⚠️ 테이블 생성은 Supabase 대시보드 SQL Editor에서 **내가 직접 실행할 수 없음** → SQL 파일을 만들어 드리면 붙여넣어 실행
+
+- [x] 1. `supabase/messages.sql` 작성 (테이블 + 길이 제한 + RLS 정책) → SQL Editor에서 실행 (사용자)
+- [x] 2. `portfolio/app/`에 Vite+React 프로젝트 생성 (`npm install`, 외부 패키지 다운로드)
+- [x] 3. 기존 포트폴리오(소개/경력/연락처, 다크모드, `style.css`)를 새 프로젝트로 옮기기 + 화면 확인
+- [x] 4. `.env.local`, `.env.example` 만들기 + `.gitignore`로 제외되는지 `git check-ignore`로 확인
+- [x] 5. Supabase 연결 코드 + 방명록 UI(폼 + 목록, 맨 아래) 추가 — 출력은 텍스트로만(XSS 방지)
+- [ ] 6. 로컬 테스트: `npm run dev` → 글 작성·목록 표시·빈 값/긴 글 막힘 확인
+- [ ] 7. `README.md`, `progress.md` 갱신
+- [ ] (별도 확인 후) 8. `vercel.json` 빌드 설정 변경 + Vercel에 환경변수 등록 — 안 하면 배포본에서 방명록이 동작하지 않음

@@ -1,0 +1,170 @@
+import React, { useState } from 'react';
+import Guestbook from './Guestbook.jsx';
+
+const profile = {
+  name: '김수민',
+  role: 'Marketing Specialist',
+  summary: 'B2B SaaS와 DTC 브랜드에서 퍼포먼스 마케팅, SEO, 마케팅 자동화를 이끌어 온 마케터입니다. 데이터로 예산의 효율을 높이고, 반복 업무는 자동화해 팀이 전략에 집중하도록 돕습니다.',
+  stats: [
+    { value: 'CPL −38%', label: '6개월간 유입 단가 절감' },
+    { value: 'ROAS 4.2배', label: '인플루언서 캠페인 14건 평균' },
+    { value: '2.3배', label: 'SEO로 키운 오가닉 트래픽' },
+  ],
+};
+
+const jobs = [
+  {
+    period: '2022.03 – 현재',
+    title: '마케팅 매니저',
+    company: '주식회사 테크노바 · B2B SaaS 스타트업 (시리즈 A, 임직원 50명)',
+    points: [
+      'Google/Meta/Naver 퍼포먼스 마케팅 총괄, 월 5천만 원 규모 운영',
+      '유입 CPL 38% 절감(6개월), 유료 전환율 2.1% → 3.4% 개선',
+      'SEO 전략 수립으로 핵심 키워드 27개 10위권 진입, 오가닉 트래픽 2.3배 증가',
+      'HubSpot 기반 마케팅 자동화 워크플로우 12종 구축',
+    ],
+  },
+  {
+    period: '2019.03 – 2022.02',
+    title: '마케팅 어시스턴트',
+    company: '주식회사 리브랜드 · DTC 뷰티 브랜드 (연매출 50억 규모)',
+    points: [
+      '인스타그램 브랜드 계정 운영, 팔로워 2.5만 → 12만 증가 (3년)',
+      '인플루언서 마케팅 캠페인 14건 진행, 평균 ROAS 4.2배',
+      '신제품 런칭 캠페인 6건 기획·집행 (시즌 한정 라인 포함)',
+    ],
+  },
+  {
+    period: '2017 – 2018',
+    title: '부회장',
+    company: '한양대학교 교내 마케팅 동아리 ABLE 38기',
+    points: [
+      '경영학과 재학 중 동아리 부회장으로 활동 (2015.03 – 2019.02, 학점 3.8 / 4.5)',
+      '주요 수강: 마케팅 조사, 소비자 행동론, 디지털 마케팅, 브랜드 관리',
+    ],
+  },
+];
+
+const contacts = [
+  { label: '이메일', value: 'soomin.kim@example.com', href: 'mailto:soomin.kim@example.com' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/soomin-kim', href: 'https://linkedin.com/in/soomin-kim' },
+  { label: '포트폴리오', value: 'soomin.example.com', href: 'https://soomin.example.com' },
+];
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState(document.documentElement.dataset.theme);
+  const toggle = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    setTheme(next);
+  };
+  return (
+    <button type="button" className="theme-toggle" onClick={toggle}
+            aria-label={theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'}>
+      {theme === 'dark' ? '☀️ 라이트' : '🌙 다크'}
+    </button>
+  );
+}
+
+function Header() {
+  return (
+    <header className="site-header">
+      <div className="container">
+        <a className="brand" href="#top">{profile.name}</a>
+        <div className="header-right">
+          <nav className="nav" aria-label="주요 메뉴">
+            <a href="#experience">경력</a>
+            <a href="#contact">연락처</a>
+            <a href="#guestbook">방명록</a>
+          </nav>
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero" id="top">
+      <div className="container">
+        <p className="eyebrow">포트폴리오</p>
+        <h1>{profile.name}</h1>
+        <p className="role">{profile.role}</p>
+        <p className="summary">{profile.summary}</p>
+        <div className="actions">
+          <a className="btn primary" href="#experience">경력 보기</a>
+          <a className="btn" href="#contact">연락하기</a>
+        </div>
+        <ul className="stats">
+          {profile.stats.map((s) => (
+            <li className="stat" key={s.value}>
+              <strong>{s.value}</strong>
+              <span>{s.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Experience() {
+  return (
+    <section className="section" id="experience">
+      <div className="container">
+        <h2>경력</h2>
+        <p className="lead">숫자로 결과를 만든 경험들입니다.</p>
+        <ol className="timeline">
+          {jobs.map((j) => (
+            <li className="job" key={j.period}>
+              <p className="period">{j.period}</p>
+              <h3>{j.title}</h3>
+              <p className="company">{j.company}</p>
+              <ul>
+                {j.points.map((p) => <li key={p}>{p}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="section" id="contact">
+      <div className="container">
+        <h2>연락처</h2>
+        <p className="lead">협업이나 채용 제안은 편하게 연락 주세요.</p>
+        <div className="contact-grid">
+          {contacts.map((c) => (
+            <a className="contact-card" href={c.href} key={c.label}>
+              <span className="label">{c.label}</span>
+              <span className="value">{c.value}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Experience />
+        <Contact />
+        <Guestbook />
+      </main>
+      <footer className="site-footer">
+        <div className="container">© 2026 {profile.name}</div>
+      </footer>
+    </>
+  );
+}
