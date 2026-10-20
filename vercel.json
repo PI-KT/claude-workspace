@@ -4,7 +4,6 @@
   "buildCommand": null,
   "installCommand": null,
   "outputDirectory": "portfolio",
-  "cleanUrls": true,
   "rewrites": [
     { "source": "/", "destination": "/react/index.html" }
   ]
